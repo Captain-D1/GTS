@@ -8,11 +8,11 @@
 body {
   margin: 0;
   padding: 40px;
-  background: black;
+  background-color: black;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 48px;
-  white-space: pre-wrap; /* wichtig für Zeilenumbrüche */
+  white-space: pre-wrap; /* Zeilenumbrüche aus TXT beibehalten */
 }
 </style>
 </head>
@@ -21,12 +21,14 @@ body {
 <div id="content">Lade Text …</div>
 
 <script>
-fetch("text.txt", { cache: "no-store" })
-  .then(r => r.text())
-  .then(t => document.getElementById("content").innerText = t)
+fetch("anzeige.txt", { cache: "no-store" })
+  .then(response => response.text())
+  .then(text => {
+    document.getElementById("content").innerText = text;
+  })
   .catch(() => {
     document.getElementById("content").innerText =
-      "Text konnte nicht geladen werden";
+      "Fehler: anzeige.txt konnte nicht geladen werden";
   });
 </script>
 
